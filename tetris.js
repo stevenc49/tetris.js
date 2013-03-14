@@ -26,16 +26,24 @@ var square2 = new Square(60, 20, RED);
 var oblock	= new OBlock(240,40);
 var tblock	= new TBlock(100,60);
 var iblock	= new IBlock(100,60);
+var jblock 	= new JBlock(100,60);
+var lblock 	= new LBlock(100,60);
+var sblock	= new SBlock(100,60);
+var zblock	= new ZBlock(100,60);
 
 function loadGame(){
 	var x = document.getElementById('canvas');
 	canvas = x.getContext('2d');
 
-	square1.draw();
-	square2.draw();
-	oblock.draw();
-	tblock.draw();
-	iblock.draw();
+	//square1.draw();
+	//square2.draw();
+	//oblock.draw();
+	//tblock.draw();
+	//iblock.draw();
+	//jblock.draw();
+	//lblock.draw();
+	//sblock.draw();
+	zblock.draw();
 
 	function loop()
 	{
@@ -254,6 +262,174 @@ function IBlock(centerX, centerY) {
 
 IBlock.prototype = new Block();
 IBlock.prototype.constructor = IBlock;
+
+/*
+	JBlock Type
+*/
+function JBlock(centerX, centerY) {
+	Block.call(this, centerX, centerY);
+	
+	var squares = new Array();
+	squares.push( new Square(centerX, centerY, PURPLE) );
+	squares.push( new Square(centerX+2*BLOCK_MEDIAN, centerY, PURPLE) );
+	squares.push( new Square(centerX-2*BLOCK_MEDIAN, centerY, PURPLE) );
+	squares.push( new Square(centerX-2*BLOCK_MEDIAN, centerY-2*BLOCK_MEDIAN, PURPLE) );
+	
+	this.squares = squares;
+	
+	this.moveUp = function() {
+		Block.prototype.moveUp(squares);
+	}
+	
+	this.moveDown = function() {
+		Block.prototype.moveDown(squares);
+	}
+	
+	this.moveLeft = function() {
+		Block.prototype.moveLeft(squares);
+	}
+	
+	this.moveRight = function() {
+		Block.prototype.moveRight(squares);
+	}
+	
+	this.draw = function() {
+		Block.prototype.draw(squares);
+	}
+	
+	this.clear = function() {
+		Block.prototype.clear(squares);
+	}
+}
+
+JBlock.prototype = new Block();
+JBlock.prototype.constructor = JBlock;
+
+/*
+	LBlock Type
+*/
+function LBlock(centerX, centerY) {
+	Block.call(this, centerX, centerY);
+	
+	var squares = new Array();
+	squares.push( new Square(centerX, centerY, PINK) );
+	squares.push( new Square(centerX-2*BLOCK_MEDIAN, centerY, PINK) );
+	squares.push( new Square(centerX+2*BLOCK_MEDIAN, centerY, PINK) );
+	squares.push( new Square(centerX+2*BLOCK_MEDIAN, centerY-2*BLOCK_MEDIAN, PINK) );
+	
+	this.squares = squares;
+	
+	this.moveUp = function() {
+		Block.prototype.moveUp(squares);
+	}
+	
+	this.moveDown = function() {
+		Block.prototype.moveDown(squares);
+	}
+	
+	this.moveLeft = function() {
+		Block.prototype.moveLeft(squares);
+	}
+	
+	this.moveRight = function() {
+		Block.prototype.moveRight(squares);
+	}
+	
+	this.draw = function() {
+		Block.prototype.draw(squares);
+	}
+	
+	this.clear = function() {
+		Block.prototype.clear(squares);
+	}
+}
+
+LBlock.prototype = new Block();
+LBlock.prototype.constructor = LBlock;
+
+/*
+	SBlock Type
+*/
+function SBlock(centerX, centerY) {
+	Block.call(this, centerX, centerY);
+	
+	var squares = new Array();
+	squares.push( new Square(centerX, centerY, YELLOW) );
+	squares.push( new Square(centerX+2*BLOCK_MEDIAN, centerY, YELLOW) );
+	squares.push( new Square(centerX, centerY+2*BLOCK_MEDIAN, YELLOW) );
+	squares.push( new Square(centerX-2*BLOCK_MEDIAN, centerY+2*BLOCK_MEDIAN, YELLOW) );
+	
+	this.squares = squares;
+	
+	this.moveUp = function() {
+		Block.prototype.moveUp(squares);
+	}
+	
+	this.moveDown = function() {
+		Block.prototype.moveDown(squares);
+	}
+	
+	this.moveLeft = function() {
+		Block.prototype.moveLeft(squares);
+	}
+	
+	this.moveRight = function() {
+		Block.prototype.moveRight(squares);
+	}
+	
+	this.draw = function() {
+		Block.prototype.draw(squares);
+	}
+	
+	this.clear = function() {
+		Block.prototype.clear(squares);
+	}
+}
+
+SBlock.prototype = new Block();
+SBlock.prototype.constructor = SBlock;
+
+/*
+	ZBlock Type
+*/
+function ZBlock(centerX, centerY) {
+	Block.call(this, centerX, centerY);
+	
+	var squares = new Array();
+	squares.push( new Square(centerX, centerY, ORANGE) );
+	squares.push( new Square(centerX-2*BLOCK_MEDIAN, centerY, ORANGE) );
+	squares.push( new Square(centerX, centerY+2*BLOCK_MEDIAN, ORANGE) );
+	squares.push( new Square(centerX+2*BLOCK_MEDIAN, centerY+2*BLOCK_MEDIAN, ORANGE) );
+	
+	this.squares = squares;
+	
+	this.moveUp = function() {
+		Block.prototype.moveUp(squares);
+	}
+	
+	this.moveDown = function() {
+		Block.prototype.moveDown(squares);
+	}
+	
+	this.moveLeft = function() {
+		Block.prototype.moveLeft(squares);
+	}
+	
+	this.moveRight = function() {
+		Block.prototype.moveRight(squares);
+	}
+	
+	this.draw = function() {
+		Block.prototype.draw(squares);
+	}
+	
+	this.clear = function() {
+		Block.prototype.clear(squares);
+	}
+}
+
+ZBlock.prototype = new Block();
+ZBlock.prototype.constructor = ZBlock;
 
 /*
 	Event Handlers
