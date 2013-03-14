@@ -73,7 +73,7 @@ Square.prototype.moveRight = function() {
 }
 
 Square.prototype.clear = function() {
-	canvas.clearRect(this.x-BLOCK_MEDIAN,this.y-BLOCK_MEDIAN, BLOCK_WIDTH, BLOCK_WIDTH);
+	canvas.clearRect(this.x-BLOCK_MEDIAN-1,this.y-BLOCK_MEDIAN-1, BLOCK_WIDTH+2, BLOCK_WIDTH+2);
 }
 
 Square.prototype.draw = function() {
@@ -81,7 +81,7 @@ Square.prototype.draw = function() {
 	canvas.strokeStyle = BLACK;
 	canvas.lineWidth = LINE_WIDTH;
 	
-	//canvas.strokeRect(this.x-BLOCK_MEDIAN,this.y-BLOCK_MEDIAN, BLOCK_WIDTH, BLOCK_WIDTH);
+	canvas.strokeRect(this.x-BLOCK_MEDIAN,this.y-BLOCK_MEDIAN, BLOCK_WIDTH, BLOCK_WIDTH);
 	canvas.fillRect(this.x-BLOCK_MEDIAN,this.y-BLOCK_MEDIAN, BLOCK_WIDTH, BLOCK_WIDTH);
 }
 
@@ -265,9 +265,9 @@ function keyDown() {
 			square2.moveLeft();
 			square2.draw();
 			
-			block1.clear();
-			block1.moveLeft();
-			block1.draw();
+			oblock.clear();
+			oblock.moveLeft();
+			oblock.draw();
 		break;
 	
 		case 38:
@@ -275,9 +275,9 @@ function keyDown() {
 			square2.moveUp();
 			square2.draw();
 			
-			block1.clear();
-			block1.moveUp();
-			block1.draw();
+			oblock.clear();
+			oblock.moveUp();
+			oblock.draw();
 		break;
 		
 		case 39:
@@ -285,9 +285,9 @@ function keyDown() {
 			square2.moveRight();
 			square2.draw();
 			
-			block1.clear();
-			block1.moveRight();
-			block1.draw();
+			oblock.clear();
+			oblock.moveRight();
+			oblock.draw();
 		break;
 	
 		case 40:
@@ -295,9 +295,9 @@ function keyDown() {
 			square2.moveDown();
 			square2.draw();
 			
-			block1.clear();
-			block1.moveDown();
-			block1.draw();
+			oblock.clear();
+			oblock.moveDown();
+			oblock.draw();
 		break;
 	}
 }
