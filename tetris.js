@@ -80,6 +80,22 @@ Square.prototype.moveRight = function() {
 	this.x = this.x + BLOCK_WIDTH;
 }
 
+Square.prototype.rotate = function() {
+	//rotate clockwise
+	old_x = this.x;
+	old_y = this.y;
+	this.x = -old_y;
+	this.y = old_x;
+}
+
+Square.prototype.rotateCCW = function() {
+	//rotate counter-clockwise
+	old_x = this.x;
+	old_y = this.y;
+	this.x = old_y;
+	this.y = -old_x;
+}
+
 Square.prototype.clear = function() {
 	canvas.clearRect(this.x-BLOCK_MEDIAN-1,this.y-BLOCK_MEDIAN-1, BLOCK_WIDTH+2, BLOCK_WIDTH+2);
 }
@@ -122,6 +138,18 @@ Block.prototype.moveLeft = function(squares) {
 Block.prototype.moveRight = function(squares) {
 	for(var i=0; i<squares.length; i++) {
 		squares[i].moveRight();
+	};
+}
+
+Block.prototype.rotate = function(squares) {
+	for(var i=0; i<squares.length; i++) {
+		squares[i].x -= this.centerX;
+		squares[i].y -= this.centerY;
+
+		squares[i].rotate();
+
+		squares[i].x += this.centerX;
+		squares[i].y += this.centerY;
 	};
 }
 
@@ -419,6 +447,10 @@ function ZBlock(centerX, centerY) {
 		Block.prototype.moveRight(squares);
 	}
 	
+	this.rotate = function() {
+		Block.prototype.rotate(squares);
+	}
+
 	this.draw = function() {
 		Block.prototype.draw(squares);
 	}
@@ -474,6 +506,17 @@ function keyDown() {
 			oblock.clear();
 			oblock.moveDown();
 			oblock.draw();
+		break;
+
+		//"R" button for rotate
+		case 82:
+			square2.clear();
+			square2.rotate();
+			square2.draw();
+			
+			zblock.clear();
+			zblock.rotate();
+			zblock.draw();
 		break;
 	}
 }
