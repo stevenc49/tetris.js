@@ -117,6 +117,14 @@ function Block(centerX, centerY) {
 	this.centerY = centerY;
 }
 
+Block.prototype.getX = function() {
+	return this.centerX;
+}
+
+Block.prototype.getY = function() {
+	return this.centerY;
+}
+
 Block.prototype.moveUp = function(squares) {
 	for(var i=0; i<squares.length; i++) {
 		squares[i].moveUp();
@@ -143,7 +151,7 @@ Block.prototype.moveRight = function(squares) {
 
 Block.prototype.rotate = function(squares) {
 	for(var i=0; i<squares.length; i++) {
-		squares[i].x -= this.centerX;
+		squares[i].x -= this.getX();
 		squares[i].y -= this.centerY;
 
 		squares[i].rotate();
@@ -430,7 +438,7 @@ function ZBlock(centerX, centerY) {
 	squares.push( new Square(centerX+2*BLOCK_MEDIAN, centerY+2*BLOCK_MEDIAN, ORANGE) );
 	
 	this.squares = squares;
-	
+
 	this.moveUp = function() {
 		Block.prototype.moveUp(squares);
 	}
@@ -457,6 +465,12 @@ function ZBlock(centerX, centerY) {
 	
 	this.clear = function() {
 		Block.prototype.clear(squares);
+	}
+	this.getX = function() {
+		return Block.prototype.getX();
+	}
+	this.getY = function() {
+		return Block.prototype.getY();
 	}
 }
 
