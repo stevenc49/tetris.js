@@ -37,13 +37,13 @@ function loadGame(){
 
 	//square1.draw();
 	//square2.draw();
-	//oblock.draw();
+	oblock.draw();
 	//tblock.draw();
 	//iblock.draw();
 	//jblock.draw();
 	//lblock.draw();
 	//sblock.draw();
-	zblock.draw();
+	//zblock.draw();
 
 	function loop()
 	{
@@ -202,6 +202,10 @@ function OBlock(centerX, centerY) {
 	this.moveRight = function() {
 		Block.prototype.moveRight(squares);
 	}
+
+	this.rotate = function() {
+		Block.prototype.rotate(squares, centerX, centerY);
+	}
 	
 	this.draw = function() {
 		Block.prototype.draw(squares);
@@ -245,6 +249,10 @@ function TBlock(centerX, centerY) {
 		Block.prototype.moveRight(squares);
 	}
 	
+	this.rotate = function() {
+		Block.prototype.rotate(squares, centerX, centerY);
+	}
+
 	this.draw = function() {
 		Block.prototype.draw(squares);
 	}
@@ -287,6 +295,10 @@ function IBlock(centerX, centerY) {
 		Block.prototype.moveRight(squares);
 	}
 	
+	this.rotate = function() {
+		Block.prototype.rotate(squares, centerX, centerY);
+	}
+
 	this.draw = function() {
 		Block.prototype.draw(squares);
 	}
@@ -329,6 +341,10 @@ function JBlock(centerX, centerY) {
 		Block.prototype.moveRight(squares);
 	}
 	
+	this.rotate = function() {
+		Block.prototype.rotate(squares, centerX, centerY);
+	}
+
 	this.draw = function() {
 		Block.prototype.draw(squares);
 	}
@@ -371,6 +387,10 @@ function LBlock(centerX, centerY) {
 		Block.prototype.moveRight(squares);
 	}
 	
+	this.rotate = function() {
+		Block.prototype.rotate(squares, centerX, centerY);
+	}
+
 	this.draw = function() {
 		Block.prototype.draw(squares);
 	}
@@ -411,6 +431,10 @@ function SBlock(centerX, centerY) {
 	
 	this.moveRight = function() {
 		Block.prototype.moveRight(squares);
+	}
+	
+	this.rotate = function() {
+		Block.prototype.rotate(squares, centerX, centerY);
 	}
 	
 	this.draw = function() {
@@ -528,9 +552,9 @@ function keyDown() {
 			square2.rotate();
 			square2.draw();
 			
-			zblock.clear();
-			zblock.rotate();
-			zblock.draw();
+			oblock.clear();
+			oblock.rotate();
+			oblock.draw();
 		break;
 	}
 }
