@@ -149,15 +149,15 @@ Block.prototype.moveRight = function(squares) {
 	};
 }
 
-Block.prototype.rotate = function(squares) {
+Block.prototype.rotate = function(squares, centerX, centerY) {
 	for(var i=0; i<squares.length; i++) {
-		squares[i].x -= this.getX();
-		squares[i].y -= this.centerY;
+		squares[i].x -= centerX;
+		squares[i].y -= centerY;
 
 		squares[i].rotate();
 
-		squares[i].x += this.centerX;
-		squares[i].y += this.centerY;
+		squares[i].x += centerX;
+		squares[i].y += centerY;
 	};
 }
 
@@ -456,7 +456,7 @@ function ZBlock(centerX, centerY) {
 	}
 	
 	this.rotate = function() {
-		Block.prototype.rotate(squares);
+		Block.prototype.rotate(squares, centerX, centerY);
 	}
 
 	this.draw = function() {
