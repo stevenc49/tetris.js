@@ -37,13 +37,13 @@ function loadGame(){
 
 	//square1.draw();
 	//square2.draw();
-	oblock.draw();
+	//oblock.draw();
 	//tblock.draw();
 	//iblock.draw();
 	//jblock.draw();
 	//lblock.draw();
 	//sblock.draw();
-	//zblock.draw();
+	zblock.draw();
 
 	function loop()
 	{
@@ -106,6 +106,17 @@ Square.prototype.draw = function() {
 	canvas.lineWidth = LINE_WIDTH;
 	
 	canvas.strokeRect(this.x-BLOCK_MEDIAN,this.y-BLOCK_MEDIAN, BLOCK_WIDTH, BLOCK_WIDTH);
+	
+	/* same issue
+	canvas.beginPath();
+	canvas.moveTo(this.x-BLOCK_MEDIAN, this.y-BLOCK_MEDIAN);
+	canvas.lineTo(this.x+BLOCK_MEDIAN, this.y-BLOCK_MEDIAN);
+	canvas.lineTo(this.x+BLOCK_MEDIAN, this.y+BLOCK_MEDIAN);
+	canvas.lineTo(this.x-BLOCK_MEDIAN, this.y+BLOCK_MEDIAN);
+	canvas.closePath();
+	canvas.stroke();
+	*/
+
 	canvas.fillRect(this.x-BLOCK_MEDIAN,this.y-BLOCK_MEDIAN, BLOCK_WIDTH, BLOCK_WIDTH);
 }
 
@@ -132,6 +143,9 @@ Block.prototype.moveUp = function(squares) {
 }
 
 Block.prototype.moveDown = function(squares) {
+
+	this.centerY = this.centerY + 2*BLOCK_MEDIAN;
+
 	for(var i=0; i<squares.length; i++) {
 		squares[i].moveDown();
 	};
@@ -460,8 +474,11 @@ function ZBlock(centerX, centerY) {
 	squares.push( new Square(centerX-2*BLOCK_MEDIAN, centerY, ORANGE) );
 	squares.push( new Square(centerX, centerY+2*BLOCK_MEDIAN, ORANGE) );
 	squares.push( new Square(centerX+2*BLOCK_MEDIAN, centerY+2*BLOCK_MEDIAN, ORANGE) );
-	
 	this.squares = squares;
+
+	this.centerX = centerX;
+	this.centerY = centerY;
+	
 
 	this.moveUp = function() {
 		Block.prototype.moveUp(squares);
@@ -541,9 +558,10 @@ function keyDown() {
 			square2.moveDown();
 			square2.draw();
 			
-			oblock.clear();
-			oblock.moveDown();
-			oblock.draw();
+			zblock.clear();
+			zblock.moveDown();
+			//moveDown.apply(zblock);
+			zblock.draw();
 		break;
 
 		//"R" button for rotate
@@ -552,9 +570,9 @@ function keyDown() {
 			square2.rotate();
 			square2.draw();
 			
-			oblock.clear();
-			oblock.rotate();
-			oblock.draw();
+			zblock.clear();
+			zblock.rotate();
+			zblock.draw();
 		break;
 	}
 }
